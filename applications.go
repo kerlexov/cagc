@@ -10,7 +10,7 @@ import (
 // ListApplications lists all applications
 func (c *Client) ListApplications(ctx context.Context) ([]Application, error) {
 	var applications []Application
-	err := c.doRequest(ctx, http.MethodGet, "/applications", nil, &applications)
+	err := c.doRequest(ctx, http.MethodGet, "/api/v1/applications", nil, &applications)
 	return applications, err
 }
 
@@ -25,42 +25,42 @@ func (c *Client) GetApplication(ctx context.Context, uuid string) (*Application,
 // CreatePublicApplication creates a new application based on a public git repository
 func (c *Client) CreatePublicApplication(ctx context.Context, app Application) (*CreateResponse, error) {
 	var response CreateResponse
-	err := c.doRequest(ctx, http.MethodPost, "/applications/public", app, &response)
+	err := c.doRequest(ctx, http.MethodPost, "/api/v1/applications/public", app, &response)
 	return &response, err
 }
 
 // CreatePrivateGithubAppApplication creates a new application based on a private repo through Github App
 func (c *Client) CreatePrivateGithubAppApplication(ctx context.Context, app Application) (*CreateResponse, error) {
 	var response CreateResponse
-	err := c.doRequest(ctx, http.MethodPost, "/applications/private-github-app", app, &response)
+	err := c.doRequest(ctx, http.MethodPost, "/api/v1/applications/private-github-app", app, &response)
 	return &response, err
 }
 
 // CreatePrivateDeployKeyApplication creates a new application based on a private repo through Deploy Key
 func (c *Client) CreatePrivateDeployKeyApplication(ctx context.Context, app Application) (*CreateResponse, error) {
 	var response CreateResponse
-	err := c.doRequest(ctx, http.MethodPost, "/applications/private-deploy-key", app, &response)
+	err := c.doRequest(ctx, http.MethodPost, "/api/v1/applications/private-deploy-key", app, &response)
 	return &response, err
 }
 
 // CreateDockerfileApplication creates a new application based on a Dockerfile
 func (c *Client) CreateDockerfileApplication(ctx context.Context, app Application) (*CreateResponse, error) {
 	var response CreateResponse
-	err := c.doRequest(ctx, http.MethodPost, "/applications/dockerfile", app, &response)
+	err := c.doRequest(ctx, http.MethodPost, "/api/v1/applications/dockerfile", app, &response)
 	return &response, err
 }
 
 // CreateDockerImageApplication creates a new application based on a Docker image
 func (c *Client) CreateDockerImageApplication(ctx context.Context, app Application) (*CreateResponse, error) {
 	var response CreateResponse
-	err := c.doRequest(ctx, http.MethodPost, "/applications/dockerimage", app, &response)
+	err := c.doRequest(ctx, http.MethodPost, "/api/v1/applications/dockerimage", app, &response)
 	return &response, err
 }
 
 // CreateDockerComposeApplication creates a new application based on a docker-compose file
 func (c *Client) CreateDockerComposeApplication(ctx context.Context, app Application) (*CreateResponse, error) {
 	var response CreateResponse
-	err := c.doRequest(ctx, http.MethodPost, "/applications/dockercompose", app, &response)
+	err := c.doRequest(ctx, http.MethodPost, "/api/v1/applications/dockercompose", app, &response)
 	return &response, err
 }
 

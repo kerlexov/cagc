@@ -3,13 +3,17 @@ package main
 import (
 	"context"
 	"fmt"
+	"github.com/joho/godotenv"
+	"github.com/kerlexov/cagc"
 	"log"
 	"os"
-
-	"github.com/kerlexov/cagc"
 )
 
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
 	// Get API token from environment variable
 	token := os.Getenv("COOLIFY_API_TOKEN")
 	if token == "" {
@@ -22,7 +26,7 @@ func main() {
 	}
 
 	// Create a new client
-	client, err := cagc.NewClient(fmt.Printf("%s/api/v1", serverUrl), token)
+	client, err := cagc.NewClient(serverUrl, token)
 	if err != nil {
 		log.Fatalf("Error creating client: %v", err)
 	}
@@ -65,11 +69,12 @@ func main() {
 	}
 
 	// Comment this out to actually create the database
-	// resp, err := client.CreatePostgresDatabase(context.Background(), newDB)
-	// if err != nil {
-	//     log.Fatalf("Error creating database: %v", err)
-	// }
-	// fmt.Printf("Database created with UUID: %s\n", resp.UUID)
+	resp, err := client.CreatePostgresDatabase(context.Background(), newDB)
+	if err != nil {
+		log.Fatalf("Error creating database: %v", err)
+	}
+	fmt.Printf("Database created with UUID: %s\n", resp.UUID)
 
 	fmt.Println("\nExample complete!")
+
 }

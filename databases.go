@@ -10,7 +10,7 @@ import (
 // ListDatabases lists all databases
 func (c *Client) ListDatabases(ctx context.Context) ([]Database, error) {
 	var databases []Database
-	err := c.doRequest(ctx, http.MethodGet, "/databases", nil, &databases)
+	err := c.doRequest(ctx, http.MethodGet, "/api/v1/databases", nil, &databases)
 	return databases, err
 }
 
@@ -25,42 +25,42 @@ func (c *Client) GetDatabase(ctx context.Context, uuid string) (*Database, error
 // CreatePostgresDatabase creates a new PostgreSQL database
 func (c *Client) CreatePostgresDatabase(ctx context.Context, db Database) (*CreateResponse, error) {
 	var response CreateResponse
-	err := c.doRequest(ctx, http.MethodPost, "/databases/postgresql", db, &response)
+	err := c.doRequest(ctx, http.MethodPost, "/api/v1/databases/postgresql", db, &response)
 	return &response, err
 }
 
 // CreateClickhouseDatabase creates a new Clickhouse database
 func (c *Client) CreateClickhouseDatabase(ctx context.Context, db Database) (*CreateResponse, error) {
 	var response CreateResponse
-	err := c.doRequest(ctx, http.MethodPost, "/databases/clickhouse", db, &response)
+	err := c.doRequest(ctx, http.MethodPost, "/api/v1/databases/clickhouse", db, &response)
 	return &response, err
 }
 
 // CreateDragonflyDatabase creates a new DragonFly database
 func (c *Client) CreateDragonflyDatabase(ctx context.Context, db Database) (*CreateResponse, error) {
 	var response CreateResponse
-	err := c.doRequest(ctx, http.MethodPost, "/databases/dragonfly", db, &response)
+	err := c.doRequest(ctx, http.MethodPost, "/api/v1/databases/dragonfly", db, &response)
 	return &response, err
 }
 
 // CreateRedisDatabase creates a new Redis database
 func (c *Client) CreateRedisDatabase(ctx context.Context, db Database) (*CreateResponse, error) {
 	var response CreateResponse
-	err := c.doRequest(ctx, http.MethodPost, "/databases/redis", db, &response)
+	err := c.doRequest(ctx, http.MethodPost, "/api/v1/databases/redis", db, &response)
 	return &response, err
 }
 
 // CreateKeyDBDatabase creates a new KeyDB database
 func (c *Client) CreateKeyDBDatabase(ctx context.Context, db Database) (*CreateResponse, error) {
 	var response CreateResponse
-	err := c.doRequest(ctx, http.MethodPost, "/databases/keydb", db, &response)
+	err := c.doRequest(ctx, http.MethodPost, "/api/v1/databases/keydb", db, &response)
 	return &response, err
 }
 
 // CreateMariaDBDatabase creates a new MariaDB database
 func (c *Client) CreateMariaDBDatabase(ctx context.Context, db Database) (*CreateResponse, error) {
 	var response CreateResponse
-	err := c.doRequest(ctx, http.MethodPost, "/databases/mariadb", db, &response)
+	err := c.doRequest(ctx, http.MethodPost, "/api/v1/databases/mariadb", db, &response)
 	return &response, err
 }
 
