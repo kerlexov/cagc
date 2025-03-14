@@ -1,4 +1,4 @@
-package cgc
+package cagc
 
 import (
 	"bytes"
@@ -10,14 +10,14 @@ import (
 	"net/url"
 )
 
-// Client represents a cgc API client
+// Client represents a cagc API client
 type Client struct {
 	BaseURL    *url.URL
 	httpClient *http.Client
 	token      string
 }
 
-// NewClient creates a new cgc API client
+// NewClient creates a new cagc API client
 func NewClient(baseURL string, token string) (*Client, error) {
 	parsedURL, err := url.Parse(baseURL)
 	if err != nil {
@@ -87,7 +87,7 @@ type Error struct {
 	Message string `json:"message"`
 }
 
-// Application represents a cgc application
+// Application represents a cagc application
 type Application struct {
 	UUID                           string   `json:"uuid,omitempty"`
 	ProjectUUID                    string   `json:"project_uuid,omitempty"`
@@ -156,7 +156,7 @@ type Application struct {
 	PrivateKeyUUID                 string   `json:"private_key_uuid,omitempty"`
 }
 
-// Database represents a cgc database
+// Database represents a cagc database
 type Database struct {
 	UUID                    string `json:"uuid,omitempty"`
 	ProjectUUID             string `json:"project_uuid,omitempty"`
@@ -222,7 +222,7 @@ type Database struct {
 	MySQLConf         string `json:"mysql_conf,omitempty"`
 }
 
-// EnvironmentVariable represents a cgc environment variable
+// EnvironmentVariable represents a cagc environment variable
 type EnvironmentVariable struct {
 	UUID        string `json:"uuid,omitempty"`
 	Key         string `json:"key,omitempty"`

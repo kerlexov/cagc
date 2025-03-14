@@ -5,7 +5,7 @@ This is a Go client library for the [Coolify](https://coolify.io/) API, allowing
 ## Installation
 
 ```bash
-go get github.com/kerlexov/cgc
+go get github.com/kerlexov/cagc
 ```
 
 ## Authentication
@@ -22,7 +22,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/kerlexov/cgc"
+	"github.com/kerlexov/cagc"
 )
 
 func main() {

@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/kerlexov/cgc"
+	"github.com/kerlexov/cagc"
 )
 
 func main() {
@@ -22,7 +22,7 @@ func main() {
 	}
 
 	// Create a new client
-	client, err := cgc.NewClient(fmt.Printf("%s/api/v1", serverUrl), token)
+	client, err := cagc.NewClient(fmt.Printf("%s/api/v1", serverUrl), token)
 	if err != nil {
 		log.Fatalf("Error creating client: %v", err)
 	}
@@ -53,7 +53,7 @@ func main() {
 
 	// Example: Create a new PostgreSQL database
 	fmt.Println("\nCreating a PostgreSQL database...")
-	newDB := cgc.Database{
+	newDB := cagc.Database{
 		ProjectUUID:      "your-project-uuid",
 		ServerUUID:       "your-server-uuid",
 		EnvironmentName:  "development",
