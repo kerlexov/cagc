@@ -16,7 +16,7 @@ func (c *Client) ListDatabases(ctx context.Context) ([]Database, error) {
 
 // GetDatabase gets a database by UUID
 func (c *Client) GetDatabase(ctx context.Context, uuid string) (*Database, error) {
-	path := fmt.Sprintf("/databases/%s", uuid)
+	path := fmt.Sprintf("/api/v1/databases/%s", uuid)
 	var database Database
 	err := c.doRequest(ctx, http.MethodGet, path, nil, &database)
 	return &database, err
@@ -66,7 +66,7 @@ func (c *Client) CreateMariaDBDatabase(ctx context.Context, db Database) (*Creat
 
 // UpdateDatabase updates an existing database
 func (c *Client) UpdateDatabase(ctx context.Context, uuid string, db Database) (*CreateResponse, error) {
-	path := fmt.Sprintf("/databases/%s", uuid)
+	path := fmt.Sprintf("/api/v1/databases/%s", uuid)
 	var response CreateResponse
 	err := c.doRequest(ctx, http.MethodPatch, path, db, &response)
 	return &response, err
@@ -74,7 +74,7 @@ func (c *Client) UpdateDatabase(ctx context.Context, uuid string, db Database) (
 
 // DeleteDatabase deletes a database
 func (c *Client) DeleteDatabase(ctx context.Context, uuid string, deleteConfigurations, deleteVolumes, dockerCleanup, deleteConnectedNetworks bool) (*CreateResponse, error) {
-	path := fmt.Sprintf("/databases/%s", uuid)
+	path := fmt.Sprintf("/api/v1/databases/%s", uuid)
 	query := url.Values{}
 	query.Add("delete_configurations", fmt.Sprintf("%t", deleteConfigurations))
 	query.Add("delete_volumes", fmt.Sprintf("%t", deleteVolumes))

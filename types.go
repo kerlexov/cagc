@@ -222,6 +222,51 @@ type Database struct {
 	MySQLConf         string `json:"mysql_conf,omitempty"`
 }
 
+// Server represents a cagc server
+type Server struct {
+	UUID                string  `json:"uuid,omitempty"`
+	Name                string  `json:"name,omitempty"`
+	Description         string  `json:"description,omitempty"`
+	IP                  string  `json:"ip,omitempty"`
+	Port                int     `json:"port,omitempty"`
+	Username            string  `json:"username,omitempty"`
+	Password            string  `json:"password,omitempty"`
+	PrivateKeyUUID      string  `json:"private_key_uuid,omitempty"`
+	IsValid             bool    `json:"is_valid,omitempty"`
+	Status              string  `json:"status,omitempty"`
+	EngineType          string  `json:"engine_type,omitempty"`
+	CoolifyPublicIp     string  `json:"coolify_public_ip,omitempty"`
+	CoolifyIsProxySetup bool    `json:"coolify_is_proxy_setup,omitempty"`
+	CPUs                int     `json:"cpus,omitempty"`
+	Memory              int     `json:"memory,omitempty"`
+	Disk                int     `json:"disk,omitempty"`
+	SwapTotal           int     `json:"swap_total,omitempty"`
+	SwapUsed            int     `json:"swap_used,omitempty"`
+	SwapFree            int     `json:"swap_free,omitempty"`
+	CPULoad             float64 `json:"cpu_load,omitempty"`
+	MemoryUsed          int     `json:"memory_used,omitempty"`
+	DiskUsed            int     `json:"disk_used,omitempty"`
+	NetworkRX           int     `json:"network_rx,omitempty"`
+	NetworkTX           int     `json:"network_tx,omitempty"`
+}
+
+// Resource represents a resource on a server
+type Resource struct {
+	ID        int    `json:"id,omitempty"`
+	UUID      string `json:"uuid,omitempty"`
+	Name      string `json:"name,omitempty"`
+	Type      string `json:"type,omitempty"`
+	CreatedAt string `json:"created_at,omitempty"`
+	UpdatedAt string `json:"updated_at,omitempty"`
+	Status    string `json:"status,omitempty"`
+}
+
+// ServerDomain represents a domain configuration on a server
+type ServerDomain struct {
+	IP      string   `json:"ip,omitempty"`
+	Domains []string `json:"domains,omitempty"`
+}
+
 // EnvironmentVariable represents a cagc environment variable
 type EnvironmentVariable struct {
 	UUID        string `json:"uuid,omitempty"`
@@ -246,8 +291,95 @@ type DeploymentResponse struct {
 	DeploymentUUID string `json:"deployment_uuid,omitempty"`
 }
 
-// CommandResponse represents a response for command execution
+// CommandResponse represents a command execution response
 type CommandResponse struct {
 	Message  string `json:"message,omitempty"`
 	Response string `json:"response,omitempty"`
+}
+
+// MessageResponse represents a simple message response
+type MessageResponse struct {
+	Message string `json:"message,omitempty"`
+}
+
+// Service represents a cagc service
+type Service struct {
+	UUID                    string `json:"uuid,omitempty"`
+	ProjectUUID             string `json:"project_uuid,omitempty"`
+	ServerUUID              string `json:"server_uuid,omitempty"`
+	EnvironmentName         string `json:"environment_name,omitempty"`
+	EnvironmentUUID         string `json:"environment_uuid,omitempty"`
+	DestinationUUID         string `json:"destination_uuid,omitempty"`
+	Type                    string `json:"type,omitempty"`
+	Name                    string `json:"name,omitempty"`
+	Description             string `json:"description,omitempty"`
+	Image                   string `json:"image,omitempty"`
+	Version                 string `json:"version,omitempty"`
+	Configuration           string `json:"configuration,omitempty"`
+	Domains                 string `json:"domains,omitempty"`
+	LimitsMemory            string `json:"limits_memory,omitempty"`
+	LimitsMemorySwap        string `json:"limits_memory_swap,omitempty"`
+	LimitsMemorySwappiness  int    `json:"limits_memory_swappiness,omitempty"`
+	LimitsMemoryReservation string `json:"limits_memory_reservation,omitempty"`
+	LimitsCPUs              string `json:"limits_cpus,omitempty"`
+	LimitsCPUSet            string `json:"limits_cpuset,omitempty"`
+	LimitsCPUShares         int    `json:"limits_cpu_shares,omitempty"`
+	CustomLabels            string `json:"custom_labels,omitempty"`
+	CustomDockerRunOptions  string `json:"custom_docker_run_options,omitempty"`
+	PostDeploymentCommand   string `json:"post_deployment_command,omitempty"`
+	PreDeploymentCommand    string `json:"pre_deployment_command,omitempty"`
+	PublicPort              int    `json:"public_port,omitempty"`
+	Volume                  string `json:"volume,omitempty"`
+	InstantDeploy           bool   `json:"instant_deploy,omitempty"`
+	PortsMappings           string `json:"ports_mappings,omitempty"`
+	IsCustomCommand         bool   `json:"is_custom_command,omitempty"`
+	CustomStartCommand      string `json:"custom_start_command,omitempty"`
+	CustomBuildCommand      string `json:"custom_build_command,omitempty"`
+	Commands                string `json:"commands,omitempty"`
+	HealthCheckEnabled      bool   `json:"health_check_enabled,omitempty"`
+	HealthCheckPath         string `json:"health_check_path,omitempty"`
+	HealthCheckPort         string `json:"health_check_port,omitempty"`
+	HealthCheckHost         string `json:"health_check_host,omitempty"`
+	HealthCheckReturnCode   int    `json:"health_check_return_code,omitempty"`
+	HealthCheckScheme       string `json:"health_check_scheme,omitempty"`
+	HealthCheckMethod       string `json:"health_check_method,omitempty"`
+	HealthCheckTimeout      int    `json:"health_check_timeout,omitempty"`
+	HealthCheckInterval     int    `json:"health_check_interval,omitempty"`
+	HealthCheckRetries      int    `json:"health_check_retries,omitempty"`
+	HealthCheckStartPeriod  int    `json:"health_check_start_period,omitempty"`
+	HealthCheckResponseText string `json:"health_check_response_text,omitempty"`
+}
+
+// PrivateKey represents a cagc private key for SSH access
+type PrivateKey struct {
+	UUID        string `json:"uuid,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Description string `json:"description,omitempty"`
+	PrivateKey  string `json:"private_key,omitempty"`
+	CreatedAt   string `json:"created_at,omitempty"`
+	UpdatedAt   string `json:"updated_at,omitempty"`
+}
+
+// Project represents a cagc project
+type Project struct {
+	UUID        string `json:"uuid,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Description string `json:"description,omitempty"`
+	CreatedAt   string `json:"created_at,omitempty"`
+	UpdatedAt   string `json:"updated_at,omitempty"`
+}
+
+// Destination represents a cagc destination
+type Destination struct {
+	UUID          string `json:"uuid,omitempty"`
+	Name          string `json:"name,omitempty"`
+	Description   string `json:"description,omitempty"`
+	ServerUUID    string `json:"server_uuid,omitempty"`
+	EngineType    string `json:"engine_type,omitempty"`
+	NetworkUUID   string `json:"network_uuid,omitempty"`
+	NetworkName   string `json:"network_name,omitempty"`
+	Engine        string `json:"engine,omitempty"`
+	ResourceCount int    `json:"resource_count,omitempty"`
+	CreatedAt     string `json:"created_at,omitempty"`
+	UpdatedAt     string `json:"updated_at,omitempty"`
 }
