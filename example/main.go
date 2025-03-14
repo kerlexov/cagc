@@ -98,6 +98,18 @@ func main() {
 		fmt.Printf("- UUID: %s, Name: %s\n", db.UUID, db.Name)
 	}
 
+	// List all resources
+	resources, err := client.ListResources(context.Background())
+	if err != nil {
+		log.Fatalf("Error listing resources: %v", err)
+	}
+
+	// Print resource details
+	fmt.Printf("\nFound %d resources:\n", len(resources))
+	for _, resource := range resources {
+		fmt.Printf("- UUID: %s, Name: %s, Type: %s\n", resource.UUID, resource.Name, resource.Type)
+	}
+
 	// List all private keys
 	keys, err := client.ListPrivateKeys(context.Background())
 	if err != nil {
@@ -110,16 +122,28 @@ func main() {
 		fmt.Printf("- UUID: %s, Name: %s\n", key.UUID, key.Name)
 	}
 
-	// List all destinations
-	destinations, err := client.ListDestinations(context.Background())
+	// List all deployments
+	deployments, err := client.ListDeployments(context.Background())
 	if err != nil {
-		log.Fatalf("Error listing destinations: %v", err)
+		log.Fatalf("Error listing deployments: %v", err)
 	}
 
-	// Print destination details
-	fmt.Printf("\nFound %d destinations:\n", len(destinations))
-	for _, destination := range destinations {
-		fmt.Printf("- UUID: %s, Name: %s, Engine: %s\n", destination.UUID, destination.Name, destination.Engine)
+	// Print deployment details
+	fmt.Printf("\nFound %d deployments:\n", len(deployments))
+	for _, deployment := range deployments {
+		fmt.Printf("- UUID: %s, Status: %s\n", deployment.UUID, deployment.Status)
+	}
+
+	// List all teams
+	teams, err := client.ListTeams(context.Background())
+	if err != nil {
+		log.Fatalf("Error listing teams: %v", err)
+	}
+
+	// Print team details
+	fmt.Printf("\nFound %d teams:\n", len(teams))
+	for _, team := range teams {
+		fmt.Printf("- ID: %d, Name: %s\n", team.ID, team.Name)
 	}
 
 	// Example: Create a new PostgreSQL database (commented out to prevent accidental creation)

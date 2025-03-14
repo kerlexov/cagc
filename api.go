@@ -6,8 +6,8 @@ import (
 )
 
 // GetVersion gets the version of the Coolify API
-func (c *Client) GetVersion(ctx context.Context) (string, error) {
-	var version string
+func (c *Client) GetVersion(ctx context.Context) (float32, error) {
+	var version float32
 	err := c.doRequest(ctx, http.MethodGet, "/api/v1/version", nil, &version)
 	return version, err
 }

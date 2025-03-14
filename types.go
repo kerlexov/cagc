@@ -383,3 +383,37 @@ type Destination struct {
 	CreatedAt     string `json:"created_at,omitempty"`
 	UpdatedAt     string `json:"updated_at,omitempty"`
 }
+
+// Deployment represents a cagc deployment
+type Deployment struct {
+	UUID         string `json:"uuid,omitempty"`
+	Status       string `json:"status,omitempty"`
+	LogsURL      string `json:"logs_url,omitempty"`
+	ResourceUUID string `json:"resource_uuid,omitempty"`
+	ResourceType string `json:"resource_type,omitempty"`
+	CommitInfo   string `json:"commit_info,omitempty"`
+	Tag          string `json:"tag,omitempty"`
+	CreatedAt    string `json:"created_at,omitempty"`
+	UpdatedAt    string `json:"updated_at,omitempty"`
+}
+
+// Team represents a cagc team
+type Team struct {
+	ID          int    `json:"id,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Description string `json:"description,omitempty"`
+	CreatedAt   string `json:"created_at,omitempty"`
+	UpdatedAt   string `json:"updated_at,omitempty"`
+}
+
+// TeamMember represents a member of a cagc team
+type TeamMember struct {
+	ID        int    `json:"id,omitempty"`
+	UserID    int    `json:"user_id,omitempty"`
+	TeamID    int    `json:"team_id,omitempty"`
+	Name      string `json:"name,omitempty"`
+	Email     string `json:"email,omitempty"`
+	Role      string `json:"role,omitempty"`
+	CreatedAt string `json:"created_at,omitempty"`
+	UpdatedAt string `json:"updated_at,omitempty"`
+}

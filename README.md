@@ -29,7 +29,7 @@ import (
 
 func main() {
 	// Create a new client
-	client, err := coolify.NewClient("https://app.coolify.io", "your-api-token")
+	client, err := coolify.NewClient("https://app.coolify.io/api/v1", "your-api-token")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -96,6 +96,29 @@ func main() {
 - `UpdateDatabase(ctx context.Context, uuid string, db Database) (*CreateResponse, error)`
 - `DeleteDatabase(ctx context.Context, uuid string, deleteConfigurations, deleteVolumes, dockerCleanup, deleteConnectedNetworks bool) (*CreateResponse, error)`
 
+### Deployments
+
+- `ListDeployments(ctx context.Context) ([]Deployment, error)`
+- `GetDeployment(ctx context.Context, uuid string) (*Deployment, error)`
+- `DeployByTagOrUUID(ctx context.Context, tagOrUUID string) (*DeploymentResponse, error)`
+
+### Projects
+
+- `ListProjects(ctx context.Context) ([]Project, error)`
+- `GetProject(ctx context.Context, uuid string) (*Project, error)`
+- `CreateProject(ctx context.Context, project Project) (*CreateResponse, error)`
+- `UpdateProject(ctx context.Context, uuid string, project Project) (*CreateResponse, error)`
+- `DeleteProject(ctx context.Context, uuid string) (*CreateResponse, error)`
+
+### Resources
+
+- `ListResources(ctx context.Context) ([]Resource, error)`
+- `ListDestinations(ctx context.Context) ([]Destination, error)` (maintained for backward compatibility)
+- `GetDestination(ctx context.Context, uuid string) (*Destination, error)` (maintained for backward compatibility)
+- `CreateDestination(ctx context.Context, destination Destination) (*CreateResponse, error)` (maintained for backward compatibility)
+- `UpdateDestination(ctx context.Context, uuid string, destination Destination) (*CreateResponse, error)` (maintained for backward compatibility)
+- `DeleteDestination(ctx context.Context, uuid string) (*CreateResponse, error)` (maintained for backward compatibility)
+
 ### Servers
 
 - `ListServers(ctx context.Context) ([]Server, error)`
@@ -126,28 +149,20 @@ func main() {
 - `UpdateServiceEnv(ctx context.Context, serviceUUID string, env EnvironmentVariable) (*CreateResponse, error)`
 - `DeleteServiceEnv(ctx context.Context, serviceUUID string, envUUID string) (*CreateResponse, error)`
 
+### Teams
+
+- `ListTeams(ctx context.Context) ([]Team, error)`
+- `GetTeam(ctx context.Context, id string) (*Team, error)`
+- `GetTeamMembers(ctx context.Context, id string) ([]TeamMember, error)`
+- `GetCurrentTeam(ctx context.Context) (*Team, error)`
+- `GetCurrentTeamMembers(ctx context.Context) ([]TeamMember, error)`
+
 ### Private Keys
 
 - `ListPrivateKeys(ctx context.Context) ([]PrivateKey, error)`
 - `GetPrivateKey(ctx context.Context, uuid string) (*PrivateKey, error)`
 - `CreatePrivateKey(ctx context.Context, key PrivateKey) (*CreateResponse, error)`
 - `DeletePrivateKey(ctx context.Context, uuid string) (*CreateResponse, error)`
-
-### Projects
-
-- `ListProjects(ctx context.Context) ([]Project, error)`
-- `GetProject(ctx context.Context, uuid string) (*Project, error)`
-- `CreateProject(ctx context.Context, project Project) (*CreateResponse, error)`
-- `UpdateProject(ctx context.Context, uuid string, project Project) (*CreateResponse, error)`
-- `DeleteProject(ctx context.Context, uuid string) (*CreateResponse, error)`
-
-### Destinations
-
-- `ListDestinations(ctx context.Context) ([]Destination, error)`
-- `GetDestination(ctx context.Context, uuid string) (*Destination, error)`
-- `CreateDestination(ctx context.Context, destination Destination) (*CreateResponse, error)`
-- `UpdateDestination(ctx context.Context, uuid string, destination Destination) (*CreateResponse, error)`
-- `DeleteDestination(ctx context.Context, uuid string) (*CreateResponse, error)`
 
 ### API Management
 
