@@ -36,7 +36,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("Error getting API version: %v", err)
 	}
-	fmt.Printf("Coolify API Version: %s\n\n", version)
+	fmt.Printf("Coolify API Version: %f\n\n", version)
 
 	// List all applications
 	apps, err := client.ListApplications(context.Background())

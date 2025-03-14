@@ -29,30 +29,126 @@ import (
 
 func main() {
 	// Create a new client
-	client, err := coolify.NewClient("https://app.coolify.io/api/v1", "your-api-token")
+	client, err := cagc.NewClient("https://coolify.example.com", "your-api-token")
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("Error creating client: %v", err)
 	}
+
+	// Get API version
+	version, err := client.GetVersion(context.Background())
+	if err != nil {
+		log.Fatalf("Error getting API version: %v", err)
+	}
+	fmt.Printf("Coolify API Version: %f\n\n", version)
 
 	// List all applications
-	applications, err := client.ListApplications(context.Background())
+	apps, err := client.ListApplications(context.Background())
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("Error listing applications: %v", err)
 	}
 
-	for _, app := range applications {
-		fmt.Printf("Application: %s (%s)\n", app.Name, app.UUID)
+	// Print application details
+	fmt.Printf("Found %d applications:\n", len(apps))
+	for _, app := range apps {
+		fmt.Printf("- UUID: %s, Name: %s\n", app.UUID, app.Name)
 	}
 
-	// You can also manage servers, services, databases, and more
+	// List all servers
 	servers, err := client.ListServers(context.Background())
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("Error listing servers: %v", err)
 	}
 
+	// Print server details
+	fmt.Printf("\nFound %d servers:\n", len(servers))
 	for _, server := range servers {
-		fmt.Printf("Server: %s (%s)\n", server.Name, server.UUID)
+		fmt.Printf("- UUID: %s, Name: %s, Status: %s\n", server.UUID, server.Name, server.Status)
 	}
+
+	// List all services
+	services, err := client.ListServices(context.Background())
+	if err != nil {
+		log.Fatalf("Error listing services: %v", err)
+	}
+
+	// Print service details
+	fmt.Printf("\nFound %d services:\n", len(services))
+	for _, service := range services {
+		fmt.Printf("- UUID: %s, Name: %s, Type: %s\n", service.UUID, service.Name, service.Type)
+	}
+
+	// List all projects
+	projects, err := client.ListProjects(context.Background())
+	if err != nil {
+		log.Fatalf("Error listing projects: %v", err)
+	}
+
+	// Print project details
+	fmt.Printf("\nFound %d projects:\n", len(projects))
+	for _, project := range projects {
+		fmt.Printf("- UUID: %s, Name: %s\n", project.UUID, project.Name)
+	}
+
+	// List all databases
+	dbs, err := client.ListDatabases(context.Background())
+	if err != nil {
+		log.Fatalf("Error listing databases: %v", err)
+	}
+
+	// Print database details
+	fmt.Printf("\nFound %d databases:\n", len(dbs))
+	for _, db := range dbs {
+		fmt.Printf("- UUID: %s, Name: %s\n", db.UUID, db.Name)
+	}
+
+	// List all resources
+	resources, err := client.ListResources(context.Background())
+	if err != nil {
+		log.Fatalf("Error listing resources: %v", err)
+	}
+
+	// Print resource details
+	fmt.Printf("\nFound %d resources:\n", len(resources))
+	for _, resource := range resources {
+		fmt.Printf("- UUID: %s, Name: %s, Type: %s\n", resource.UUID, resource.Name, resource.Type)
+	}
+
+	// List all private keys
+	keys, err := client.ListPrivateKeys(context.Background())
+	if err != nil {
+		log.Fatalf("Error listing private keys: %v", err)
+	}
+
+	// Print private key details
+	fmt.Printf("\nFound %d private keys:\n", len(keys))
+	for _, key := range keys {
+		fmt.Printf("- UUID: %s, Name: %s\n", key.UUID, key.Name)
+	}
+
+	// List all deployments
+	deployments, err := client.ListDeployments(context.Background())
+	if err != nil {
+		log.Fatalf("Error listing deployments: %v", err)
+	}
+
+	// Print deployment details
+	fmt.Printf("\nFound %d deployments:\n", len(deployments))
+	for _, deployment := range deployments {
+		fmt.Printf("- UUID: %s, Status: %s\n", deployment.UUID, deployment.Status)
+	}
+
+	// List all teams
+	teams, err := client.ListTeams(context.Background())
+	if err != nil {
+		log.Fatalf("Error listing teams: %v", err)
+	}
+
+	// Print team details
+	fmt.Printf("\nFound %d teams:\n", len(teams))
+	for _, team := range teams {
+		fmt.Printf("- ID: %d, Name: %s\n", team.ID, team.Name)
+	}
+
 }
 ```
 
