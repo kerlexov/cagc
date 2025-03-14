@@ -1,6 +1,6 @@
 # Coolify API Go Client
 
-## Version 0.0.1
+## Version 0.0.2
 
 This is a Go client library for the [Coolify](https://coolify.io/) API, allowing you to programmatically manage your Coolify resources.
 
