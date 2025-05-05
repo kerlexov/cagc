@@ -22,9 +22,9 @@ func (c *Client) GetTeam(ctx context.Context, id string) (*Team, error) {
 }
 
 // GetTeamMembers gets members by team ID
-func (c *Client) GetTeamMembers(ctx context.Context, id string) ([]TeamMember, error) {
+func (c *Client) GetTeamMembers(ctx context.Context, id string) ([]User, error) {
 	path := fmt.Sprintf("/api/v1/teams/%s/members", id)
-	var members []TeamMember
+	var members []User
 	err := c.doRequest(ctx, http.MethodGet, path, nil, &members)
 	return members, err
 }
@@ -37,8 +37,8 @@ func (c *Client) GetCurrentTeam(ctx context.Context) (*Team, error) {
 }
 
 // GetCurrentTeamMembers gets the currently authenticated team members
-func (c *Client) GetCurrentTeamMembers(ctx context.Context) ([]TeamMember, error) {
-	var members []TeamMember
+func (c *Client) GetCurrentTeamMembers(ctx context.Context) ([]User, error) {
+	var members []User
 	err := c.doRequest(ctx, http.MethodGet, "/api/v1/teams/current/members", nil, &members)
 	return members, err
 }
